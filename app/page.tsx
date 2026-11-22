@@ -1,10 +1,30 @@
 import { Button } from "@heroui/react";
+import { signIn, signOut } from "./actions";
+import { auth } from "@/auth";
+import Profile from "./components/Profile";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
   return (
     <>
       <span>Welcome to Talk to Go</span>
-      <Button>Click Me</Button>
+      <form action={signIn}>
+        <Button type="submit" variant="primary">
+          Sign in using Github
+        </Button>
+      </form>
+      <form action={signOut}>
+        <Button type="submit" variant="danger-soft">
+          Sign Out
+        </Button>
+      </form>
+      {session?.user ? (
+        <span>user is signed in</span>
+      ) : (
+        <span>user is signed out</span>
+      )}
+      <Profile />
     </>
   );
 }
