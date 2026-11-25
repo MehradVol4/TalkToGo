@@ -1,5 +1,6 @@
 import { Button } from "@heroui/react";
-import { signIn, signOut } from "./actions";
+import { signIn } from "./actions/sign-in";
+import { signOut } from "./actions/sign-out";
 import { auth } from "@/auth";
 import Profile from "./components/Profile";
 
