@@ -1,31 +1,7 @@
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { auth } from "@/auth";
-import { Avatar, Button } from "@heroui/react";
-
+import HeaderAuth from "./header-auth";
 export default async function Header() {
-  const session = await auth();
-
-  let authContent: React.ReactNode;
-  if (session?.user) {
-    authContent = (
-      <Avatar size="lg">
-        <Avatar.Image src={session.user.image ?? ""} alt="User" />
-        <Avatar.Fallback>U</Avatar.Fallback>
-      </Avatar>
-    );
-  } else {
-    authContent = (
-      <>
-        <nav>
-          <Button type="submit" variant="secondary">Sign In</Button>
-        </nav>
-        <nav>
-          <Button type="submit" variant="primary">Sign Up</Button>
-        </nav>
-      </>
-    );
-  }
   return (
     <header className="mb-6 border-b">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4">
@@ -49,7 +25,7 @@ export default async function Header() {
         </div>
 
         <div className="shrink-0">
-          {authContent}
+          <HeaderAuth />
         </div>
       </nav>
     </header>
